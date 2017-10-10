@@ -30,6 +30,10 @@ class Board
     self[start_pos] = Nullpiece.instance
   end
 
+  def empty_space?(pos)
+    self[pos] == Nullpiece.instance
+  end
+
   def [](pos)
     row, col = pos
     @grid[row][col]
