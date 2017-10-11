@@ -25,17 +25,19 @@ class Game
   def take_turn
     puts "select a piece to move"
     selected = nil
-    until selected
-      selected = display.cursor.select_pos
+    cursor = display.cursor
+    until selected != nil
       display.render
       cursor.get_input
+      selected = cursor.select_pos
+      p selected
     end
 
     puts "select where to move"
-    display.cursor.select_pos = nil
-    selected2
+    selected2 = nil
+    cursor.select_pos = nil
     until selected2
-      selected2 = display.cursor.select_pos
+      selected2 = cursor.select_pos
       display.render
       cursor.get_input
     end

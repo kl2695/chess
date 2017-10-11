@@ -70,6 +70,7 @@ class Board
       self[end_pos] = self[start_pos]
       self[start_pos] = Nullpiece.instance
     else
+      puts "invalid move"
       raise InvalidMoveError, "Move is not valid!"
     end
   end
