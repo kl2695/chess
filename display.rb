@@ -1,5 +1,4 @@
 require_relative "cursor"
-require_relative "board"
 require 'colorize'
 
 class Display
@@ -12,23 +11,25 @@ class Display
   end
 
   def render
-    puts "_" * 26
     board.grid.each_with_index do |row,i|
-      print "| "
+      color = i.odd?
       row.each_with_index do |piece,j|
+        pos = [i, j]
         square = piece.to_s
-        if [i,j] == cursor.cursor_pos
-          print square.red
-        else
-          print square
+        if color
+          square = square.on_blue
         end
-        print " |"
+        if pos == cursor.cursor_pos || pos == cursor.select_pos
+          square = square.on_red
+        end
+
+        print square
+        color = !color
       end
       puts
-      puts "_" * 26
     end
-    nil
   end
+
 
   def test
     10.times do
